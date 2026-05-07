@@ -40,7 +40,7 @@ The goal is to help developers understand:
 
 Before opening a Pull Request (PR):
 
-1. Read the README, SPEC and documentation
+1. Read the README, SPEC and all documentation
 2. Check existing Issues and Discussions
 3. Open a discussion for large changes
 4. Keep contributions focused and incremental
