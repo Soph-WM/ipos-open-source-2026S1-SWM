@@ -111,16 +111,22 @@ Follow **GitHub Flow**:
 
 ## **8. Development Environment Setup**
 
-- **Python 3.9+** is required.
+- **Python 3.13+** is required.
 - Install dependencies:
 
   ```bash
-  pip install -r requirements.txt
+  pip install -r requirements-dev.txt
   ```
+
+or if you using uv
+
+  ```bash
+  uv sync --group=dev
+  ````
 
 - Recommended tools:
   - IDE: PyCharm or Visual Studio Code.
-  - Linter: `flake8` for PEP8 compliance.
+  - Linter: `flake8` or `ruff` for PEP8 compliance.
 
 ---
 

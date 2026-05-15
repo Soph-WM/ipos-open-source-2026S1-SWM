@@ -90,7 +90,7 @@ Contributions are especially welcome in the following areas:
 
 ---
 
-# Coding Guidelines
+## Coding Guidelines
 
 ## Python Style
 
