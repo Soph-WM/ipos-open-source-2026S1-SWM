@@ -13,30 +13,19 @@ readme = "README.md"
 requires-python = ">=3.14"
 
 dependencies = [
-  "click>=8.0",
+  # Server dependencies
   "fastapi>=0.136.1",
   "fastmcp>=3.3.0",
   "httpx>=0.28.1",
+  # Utility lib's
+  "click>=8.0",
   "pydantic>=2.13.4",
+  "result-pattern>=0.2.2",
   "python-dateutil>=2.8",
 ]
 
 [dependency-groups]
-dev = [
-  "flake8>=7.3.0",
-  "flake8-annotations>=3.2.0",
-  "flake8-bugbear>=25.11.29",
-  "flake8-docstrings>=1.7.0",
-  "flake8-import-order>=0.19.2",
-  "flake8-print>=5.0.0",
-  "hypothesis>=6.152.7",
-  "pep8-naming>=0.15.1",
-  "pydocstyle>=6.3.0",
-  "pytest>=9.0.3",
-  "pytest-cov>=7.1.0",
-  "ruff>=0.15.13",
-]
-
+dev = ["hypothesis>=6.152.7", "pytest>=9.0.3", "pytest-cov>=7.1.0", "ruff>=0.15.13", "ty>=0.0.37"]
 
 [project.urls]
 Homepage = "https://github.com/Robbo-lab/ipos-open-source-2026S1.git"
