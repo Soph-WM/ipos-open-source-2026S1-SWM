@@ -134,7 +134,7 @@ Follow **GitHub Flow**:
 
 - Recommended tools:
   - IDE: PyCharm or Visual Studio Code.
-  - Linter: `flake8` or `ruff` for PEP8 compliance.
+  - Linter: `ruff` for PEP8 compliance.
 
 ---
 
