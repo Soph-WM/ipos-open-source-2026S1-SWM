@@ -39,3 +39,31 @@ class GeminiClient:
     def _build_url(self, method: str) -> str:
         """Construct the REST URL for a specific model method."""
         return f"{self.base_url}/models/{self.model_name}:{method}?key={self.api_key}"
+
+    async def generate_content(
+        self,
+        request: GenerateContentRequest,
+        client: httpx.AsyncClient | None = None,
+    ) -> GenerateContentResponse:
+        """
+        Send a single request to Gemini to generate content.
+
+        Args:
+            request: The validated GenerateContentRequest model.
+            client: Optional existing httpx.AsyncClient.
+
+        Returns:
+            A validated GenerateContentResponse model.
+        """
+        url = self._build_url("generateContent")
+        payload = request.model_dump(by_alias=True, exclude_none=True)
+
+        if client:
+            response = await client.post(url, json=payload)
+            response.raise_for_status()
+            return GenerateContentResponse.model_validate(response.json())
+
+        async with httpx.AsyncClient(timeout=30.0) as c:
+            response = await c.post(url, json=payload)
+            response.raise_for_status()
+            return GenerateContentResponse.model_validate(response.json())
