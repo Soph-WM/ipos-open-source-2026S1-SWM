@@ -6,6 +6,7 @@ from app.models.gemini_models import (
     FunctionCall,
     FunctionCallPart,
     GenerateContentRequest,
+    GenerateContentResponse,
     Role,
     TextPart,
     is_function_call_part,
@@ -53,3 +54,30 @@ def test_request_model_dump():
     dump = req.model_dump(by_alias=True, exclude_none=True)
     assert "contents" in dump
     assert dump["contents"][0]["role"] == "user"
+
+
+def test_response_parsing():
+    """Verify that GenerateContentResponse can parse a typical API response."""
+    expected_total_tokens = 30
+    raw_response = {
+        "candidates": [
+            {
+                "content": {"role": "model", "parts": [{"text": "Parsed response"}]},
+                "finishReason": "STOP",
+            }
+        ],
+        "usageMetadata": {
+            "promptTokenCount": 10,
+            "candidatesTokenCount": 20,
+            "totalTokenCount": expected_total_tokens,
+        },
+    }
+    response = GenerateContentResponse.model_validate(raw_response)
+    assert len(response.candidates) == 1
+
+    first_part = response.candidates[0].content.parts[0]
+    assert is_text_part(first_part)
+    assert first_part.text == "Parsed response"
+
+    assert response.usage_metadata is not None
+    assert response.usage_metadata.total_token_count == expected_total_tokens
