@@ -1,10 +1,10 @@
-from enum import Enum
-from typing import Annotated, Any, Literal, TypeIs
+from enum import StrEnum
+from typing import Annotated, Any, TypeIs
 
 from pydantic import BaseModel, ConfigDict, Field
 
 
-class Role(str, Enum):
+class Role(StrEnum):
     USER = "user"
     MODEL = "model"
 
@@ -81,7 +81,7 @@ class Tool(BaseModel):
     )
 
 
-class FunctionCallingConfigMode(str, Enum):
+class FunctionCallingConfigMode(StrEnum):
     AUTO = "AUTO"
     ANY = "ANY"
     NONE = "NONE"
@@ -89,9 +89,7 @@ class FunctionCallingConfigMode(str, Enum):
 
 class FunctionCallingConfig(BaseModel):
     mode: FunctionCallingConfigMode = FunctionCallingConfigMode.AUTO
-    allowed_function_names: list[str] | None = Field(
-        None, alias="allowedFunctionNames"
-    )
+    allowed_function_names: list[str] | None = Field(None, alias="allowedFunctionNames")
 
 
 class ToolConfig(BaseModel):
