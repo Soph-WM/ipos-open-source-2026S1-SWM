@@ -11,6 +11,7 @@ from app.models.gemini_models import (
     GenerateContentResponse,
 )
 
+
 class GeminiClient:
     """
     An asynchronous client for the Gemini API.

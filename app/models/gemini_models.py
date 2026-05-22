@@ -1,3 +1,20 @@
+"""
+Gemini API Pydantic V2 Models.
+"""
+# Design Rationale:
+# - I've tried to follow the Gemini rest API specification as closely as possible while
+#   trying to maintain Python's snake case, I've also used used runtime type narrowing
+#   with some helpers I added to the `Part` model. I've also built support for both
+#   unary (generateContent) and streaming (SSE) workflows.
+
+# Resources & Specifications:
+# - Google AI Studio API Reference:
+#   https://ai.google.dev/api/rest/v1beta/models/generateContent
+# - Model Context Protocol (MCP) Integration:
+#   https://modelcontextprotocol.io
+# - PEP 742 (TypeIs):
+#   https://peps.python.org/pep-0742/
+
 from enum import StrEnum
 from typing import Annotated, Any, TypeIs
 
@@ -48,7 +65,7 @@ Part = Annotated[
 ]
 
 
-# Runtime Type Narrowing Helpers 
+# Runtime Type Narrowing Helpers
 def is_text_part(part: Part) -> TypeIs[TextPart]:
     return hasattr(part, "text")
 
